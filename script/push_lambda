@@ -68,6 +68,20 @@ function create() {
     aws lambda create-function ${opts[@]}
 }
 
+function update() {
+    function_name="$1"
+    package="$2"
+
+    # Lambda options
+    opts=()
+    opts+=("--publish")
+    opts+=("--function-name"); opts+=("${function_name}")
+    opts+=("--zip-file"); opts+=("fileb://${package}")
+
+    # Create function on Lambda
+    aws lambda update-function-code ${opts[@]}
+}
+
 function main() {
     # Check usage
     usage "$@"
@@ -80,8 +94,7 @@ function main() {
 
     if exists "$function_name"
     then
-        echo "$function_name exists, delete it first"
-        exit 0
+        update "$function_name" "$package"
     else
         create "$function_name" "$package"
     fi
