@@ -4,7 +4,7 @@
 import sys, os
 
 
-def handler(*args, **kwargs):
+def handler(event, context):
     total = 0
 
     if "numbers" in event:
