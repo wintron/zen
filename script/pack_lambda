@@ -1,0 +1,43 @@
+#!/bin/bash
+# A wrapper around `aws lambda create-function` to create a new Lambda function
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+function usage() {
+    if [[ $# -eq 0 ]] ; then
+        echo "$(basename ${0}) <path>"
+        exit 0
+    fi
+}
+
+function build_package() {
+    # Prepare package for deploy
+    source=$(mktemp -d)
+    dest=$(mktemp -d)
+
+    cp -r "$1" $source
+
+    cd "$source"
+    zip -r "${dest}/package.zip" . --exclude *.git/* *.zip >/dev/null
+
+    # TODO
+    # Include dependencies
+    # ...
+
+    echo "${dest}/package.zip"
+}
+
+function main() {
+    # Check usage
+    usage "$@"
+
+    path="$1"
+
+    # Build package from path
+    package=$( build_package "${path}" )
+
+    cp "$package" .
+}
+
+main "$@"

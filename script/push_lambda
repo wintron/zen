@@ -6,26 +6,9 @@ set -e
 
 function usage() {
     if [[ $# -eq 0 ]] ; then
-        echo "$(basename ${0}) <function-name> <path>"
+        echo "$(basename ${0}) <function-name> <package-zip>"
         exit 0
     fi
-}
-
-function build_package() {
-    # Prepare package for deploy
-    source=$(mktemp -d)
-    dest=$(mktemp -d)
-
-    cp -r "$1" $source
-
-    cd "$source"
-    zip -r "${dest}/package.zip" . >/dev/null
-
-    # TODO
-    # Include dependencies
-    # ...
-
-    echo "${dest}/package.zip"
 }
 
 function exists() {
@@ -87,10 +70,7 @@ function main() {
     usage "$@"
 
     function_name="$1"
-    path="$2"
-
-    # Build package from path
-    package=$( build_package "${path}" )
+    package="$2"
 
     if exists "$function_name"
     then
