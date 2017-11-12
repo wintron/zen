@@ -5,7 +5,7 @@ import sys, os
 import requests
 
 
-def lambda_handler(*args, **kwargs):
+def handler(*args, **kwargs):
     response = requests.get("https://api.github.com/zen")
     return response.text
 
