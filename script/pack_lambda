@@ -17,14 +17,18 @@ function build_package() {
     dest=$(mktemp -d)
 
     cp -r "$1" $source
-
     cd "$source"
+
+    # Include dependencies defined via Pipfile
+    if [-e Pipfile] ; then
+        pipenv lock --requirements > requirements.txt
+        pip install -r requirements.txt -t .
+    fi
+
+    # Generate .zip file, exlude .git, and previous .zip files
     zip -r "${dest}/package.zip" . --exclude *.git/* *.zip >/dev/null
 
-    # TODO
-    # Include dependencies
-    # ...
-
+    # Return path to the .zip
     echo "${dest}/package.zip"
 }
 
