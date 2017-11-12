@@ -20,13 +20,13 @@ function build_package() {
     cd "$source"
 
     # Include dependencies defined via Pipfile
-    if [-e Pipfile] ; then
+    if [ -e "Pipfile" ] ; then
         pipenv lock --requirements > requirements.txt
         pip install -r requirements.txt -t .
     fi
 
     # Generate .zip file, exlude .git, and previous .zip files
-    zip -r "${dest}/package.zip" . --exclude *.git/* *.zip >/dev/null
+    zip -r "${dest}/package.zip" . --exclude *.git* *.zip *.md LICENSE script/ script/* >/dev/null
 
     # Return path to the .zip
     echo "${dest}/package.zip"
