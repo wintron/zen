@@ -11,4 +11,4 @@ def handler(*args, **kwargs):
 
 
 if __name__ == "__main__":
-    print lambda_handler(*sys.argv)
+    print handler(*sys.argv)
