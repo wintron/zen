@@ -4,8 +4,14 @@
 import sys, os
 
 
-def lambda_handler(*args, **kwargs):
-    return "hello world"
+def lambda_handler(event, context):
+    total = 0
+    
+    if "numbers" in event:
+        for num in event["numbers"]:
+            total += float(num)
+
+    return total
 
 
 if __name__ == "__main__":
