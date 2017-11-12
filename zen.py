@@ -4,7 +4,7 @@
 import sys, os
 
 
-def lambda_handler(*args, **kwargs):
+def handler(*args, **kwargs):
     return "hello world"
 
 

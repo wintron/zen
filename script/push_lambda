@@ -43,7 +43,7 @@ function create() {
     opts+=("--publish")
     opts+=("--runtime"); opts+=("python2.7")
     opts+=("--role"); opts+=("arn:aws:iam::543863283762:role/service-role/default")
-    opts+=("--handler"); opts+=("lambda_function.lambda_handler")
+    opts+=("--handler"); opts+=("zen.handler")
     opts+=("--function-name"); opts+=("${function_name}")
     opts+=("--code"); opts+=("S3Bucket=wintronio,S3Key=lambda/package.zip")
 
