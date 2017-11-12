@@ -5,7 +5,7 @@ import sys, os
 
 
 def handler(*args, **kwargs):
-    return "hello world"
+    return "i program my home computer, beam myself into the future"
 
 
 if __name__ == "__main__":
