@@ -4,9 +4,9 @@
 import sys, os
 
 
-def lambda_handler(event, context):
+def handler(*args, **kwargs):
     total = 0
-    
+
     if "numbers" in event:
         for num in event["numbers"]:
             total += float(num)
