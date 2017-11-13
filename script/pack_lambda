@@ -1,5 +1,5 @@
 #!/bin/bash
-# A wrapper around `aws lambda create-function` to create a new Lambda function
+# Generate AWS Lambda package.zip, including any dependencies defined via Python's Pipfile format
 
 # Exit immediately if a command exits with a non-zero status
 set -e
